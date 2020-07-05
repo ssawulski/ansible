@@ -1,7 +1,8 @@
 ---
 - name: First Network Playbook
   connection: network_cli
-  gather_facts: fals
+  gather_facts: fale
+  hosts: target
   tasks:
     - name: show version
       ios_command:
