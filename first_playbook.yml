@@ -1,10 +1,10 @@
 ---
 - name: First Network Playbook
   connection: network_cli
-  gather_facts: fale
+  gather_facts: false
   hosts: all
   tasks:
-    - name: show version
+    - name: show version cisco
       ios_command:
         commands: show version
       when: ansible_network_os == 'ios'
@@ -15,7 +15,7 @@
       debug:
         var: output_cisco.stdout
 
-    - name: show version
+    - name: show version juniper
       junos_command:
         commands: show version
       when: ansible_network_os == 'junos'
@@ -25,3 +25,6 @@
     - name: show output
       debug:
         var: output_juniper.stdout
+
+  junos_command:
+    commands: show version
