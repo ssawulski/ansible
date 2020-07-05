@@ -25,6 +25,3 @@
     - name: show output
       debug:
         var: output_juniper.stdout
-
-  junos_command:
-    commands: show version
