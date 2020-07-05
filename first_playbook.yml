@@ -22,4 +22,6 @@
 
       register: output_juniper
 
-      register: output_juniper
+    - name: show output
+      debug:
+        var: output_juniper.stdout
