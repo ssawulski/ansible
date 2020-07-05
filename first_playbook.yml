@@ -7,9 +7,19 @@
     - name: show version
       ios_command:
         commands: show version
+      when: ansible_network_os == 'ios'
 
-      register: output
+      register: output_cisco
 
     - name: show output
       debug:
-        var: output.stdout
+        var: output_cisco.stdout
+
+    - name: show version
+      junos_command:
+        commands: show version
+      when: ansible_network_os == 'junos'
+
+      register: output_juniper
+
+      register: output_juniper
