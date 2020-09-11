@@ -6,7 +6,7 @@
   tasks:
     - name: get configuration
       ios_command:
-        commands: show running config
+        commands: show run
       when: ansible_network_os == 'ios'
 
       register: config_cisco
