@@ -1,0 +1,26 @@
+---
+- name: Bakcup
+  connection: network_cli
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: get configuration
+      ios_command:
+        commands: show running config
+      when: ansible_network_os == 'ios'
+
+      register: config_cisco
+
+    - name: ensure backup folder is created
+      file:
+        path: "/var/tmp/backup"
+        state: directory
+      run_once: yes
+      
+    - name: get timestamp
+      command: date +%Y%m%d
+      register: timestamp
+      
+    - copy:
+        content: "{{ config_cisco.stdout[0] }}"
+        dest: "/var/tmp/backup/cisco-config_{{ timestamp.stdout }}"
